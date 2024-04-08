@@ -41,14 +41,14 @@ class MasterWindow:
                 
                 AUTOR: Germán Fraga
 
-                Ejercicios - Diplomatura Python 3
+                Decoradores - Diplomatura Python 3
                 Nivel avanzado.
                 Paradigama de Programación Orientada a Objetos
                 07/4/2024
                 """
 
         # Construccion de la ventana principal
-        self.window.title("Ejercitacion - Python Avanzado")
+        self.window.title("Decoradores - Python Avanzado")
         self.window.resizable(False, False)
         ruta = os.getcwd() + os.sep + "img" + os.sep
         self.window.iconbitmap(ruta + "python.ico")
@@ -92,11 +92,11 @@ class MasterWindow:
         # ===== LABELS =====
 
         Label(frame_menu, text="MENU", bg="#a1a1a1", font="Bold").grid(
-            row=0, column=0, sticky="w"
+            row=0, column=0, sticky="we"
         )
 
         Label(frame_datos, text="INFORMACION DEL EMPLEADO", font="Bold").grid(
-            row=0, column=0, columnspan=6, pady=10, sticky="w"
+            row=0, column=0, columnspan=6, pady=10, sticky="we"
         )
 
         Label(frame_datos, text="D.N.I.").grid(row=1, column=0, sticky="w")
@@ -167,28 +167,32 @@ class MasterWindow:
         )
 
         # ===== ENTRYS =====
-        e_dni = Entry(frame_datos, textvariable=var_dni, width=15)
+        e_dni = Entry(frame_datos, textvariable=var_dni, width=15, borderwidth=0)
         e_dni.grid(row=1, column=1)
-        e_cuil = Entry(frame_datos, textvariable=var_cuil, width=15)
+        e_cuil = Entry(frame_datos, textvariable=var_cuil, width=15, borderwidth=0)
         e_cuil.grid(row=1, column=5)
-        e_nombre = Entry(frame_datos, textvariable=var_nombre, width=80)
+        e_nombre = Entry(frame_datos, textvariable=var_nombre, width=80, borderwidth=0)
         e_nombre.grid(row=2, column=1, columnspan=5)
-        e_apellido = Entry(frame_datos, textvariable=var_apellido, width=80)
+        e_apellido = Entry(
+            frame_datos, textvariable=var_apellido, width=80, borderwidth=0
+        )
         e_apellido.grid(row=3, column=1, columnspan=5)
-        e_direccion = Entry(frame_datos, textvariable=var_domicilio, width=80)
+        e_direccion = Entry(
+            frame_datos, textvariable=var_domicilio, width=80, borderwidth=0
+        )
         e_direccion.grid(row=4, column=1, columnspan=5)
 
         widget_2.date_in(var_fnacimiento, 1)
         widget_2.date_in(var_falta, 5)
 
-        e_obra = Entry(frame_datos, textvariable=var_obra, width=80)
+        e_obra = Entry(frame_datos, textvariable=var_obra, width=80, borderwidth=0)
         e_obra.grid(row=6, column=1, columnspan=5)
-        e_art = Entry(frame_datos, textvariable=var_art, width=80)
+        e_art = Entry(frame_datos, textvariable=var_art, width=80, borderwidth=0)
         e_art.grid(row=7, column=1, columnspan=5)
-        e_jornal = Entry(frame_datos, textvariable=var_jornal, width=15)
+        e_jornal = Entry(frame_datos, textvariable=var_jornal, width=15, borderwidth=0)
         e_jornal.grid(row=8, column=1)
 
-        e_filtro = Entry(frame_tree, textvariable=var_filtro, width=80)
+        e_filtro = Entry(frame_tree, textvariable=var_filtro, width=80, borderwidth=0)
         e_filtro.grid(row=0, column=1)
 
         # ===== TREEVIEW =====
@@ -260,7 +264,8 @@ class MasterWindow:
                 "Borra registro", "¿Está seguro que quiere eliminar ese registro?"
             )
             if option:
-                self.vista.set_entry(self.modelo.delete_record(data_list))
+                self.modelo.delete_record(data_list)
+                self.vista.set_entry([["" for _ in range(11)]])
             else:
                 self.l_status.config(
                     text="Se ha cancelado la eliminación de los datos.",
@@ -282,7 +287,8 @@ class MasterWindow:
                 "Modifica registro", "¿Está seguro que quiere modificar ese registro?"
             )
             if option:
-                self.vista.set_entry(self.modelo.modify_record(data_list))
+                self.modelo.modify_record(data_list)
+                self.vista.set_entry([["" for _ in range(11)]])
             else:
                 self.l_status.config(
                     text="Se ha cancelado la modificación de los datos.",
@@ -317,7 +323,11 @@ class WidgetsWindows(MasterWindow):
         self.instruction = instruction
         self.position = position
         self.btn = Button(
-            self.frame, text=self.text_btn, width=15, command=self.instruction
+            self.frame,
+            text=self.text_btn,
+            width=15,
+            command=self.instruction,
+            borderwidth=0,
         )
         self.btn.grid(row=self.position, column=0, padx=2, pady=9)
 
@@ -338,6 +348,7 @@ class WidgetsWindows(MasterWindow):
             width=6,
             bg="#a1a1a1",
             command=self.instruction,
+            borderwidth=0,
         )
         btn_buscar.grid(row=self.position, column=2, sticky="w")
 
@@ -357,5 +368,6 @@ class WidgetsWindows(MasterWindow):
             date_pattern="dd-mm-yyyy",
             textvariable=self.data_var,
             foreground="#000000",
+            borderwidth=0,
         )
         e_fecha.grid(row=5, column=self.position)

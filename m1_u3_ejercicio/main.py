@@ -8,7 +8,7 @@ __author__ = "German Fraga"
 __maintainer__ = "German Fraga"
 __email__ = "gdfraga@gmail.com"
 __copyright__ = "Copyright 2024"
-__version__ = "0.2.7"
+__version__ = "0.2.8"
 
 from tkinter import Tk
 from vista import MasterWindow

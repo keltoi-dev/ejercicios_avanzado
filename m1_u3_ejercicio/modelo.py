@@ -6,6 +6,48 @@ modelo.py:
 from manejo_base import ManageBase, BaseError
 from aux_modelo import Auxiliares
 from verifica_campos import RegexCampos, RegexError
+import os
+import datetime
+
+
+# ***** DECORADORES *****
+def decorador_alta(func):
+    def envelope(*args, **kwargs):
+        print("Se ejecuto el metodo de alta")
+        func(*args, **kwargs)
+        funcion_log(func.__name__)
+
+    return envelope
+
+
+def decorador_baja(func):
+    def envelope(*args, **kwargs):
+        print("Se ejecuto el metodo de baja")
+        func(*args, **kwargs)
+        funcion_log(func.__name__)
+
+    return envelope
+
+
+def decorador_modificacion(func):
+    def envelope(*args, **kwargs):
+        print("Se ejecuto el metodo de modificar")
+        func(*args, **kwargs)
+        funcion_log(func.__name__)
+
+    return envelope
+
+
+def funcion_log(parameter):
+    BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
+    ruta = os.path.join(BASE_DIR, "function_log.txt")
+    log_function = open(ruta, "a")
+    print(
+        datetime.datetime.now(),
+        "- Se utilizo el metodo",
+        parameter,
+        file=log_function,
+    )
 
 
 # ***** FUNCIONES PARA ALTAS - BAJAS - MODIFICACIONES *****
@@ -19,6 +61,7 @@ class ManageData:
         self.base = ManageBase()
 
     # ----- FUNCION ALTA DE REGISTRO -----
+    @decorador_alta
     def create_record(self, data: list, aux_vista) -> str:
         """
         Función de alta de los datos capturados en una lista de los campos entry de la vista.
@@ -72,6 +115,7 @@ class ManageData:
                 return "La informacion cargada es incorrecta."
 
     # ----- FUNCION DE BAJA DE REGISTRO -----
+    @decorador_baja
     def delete_record(self, data: list) -> list:
         """
         Funcion de baja de registro seleccionado de la base de datos.
@@ -90,9 +134,10 @@ class ManageData:
             background="#B9F582",
         )
 
-        return [["" for _ in range(11)]]
+        # return [["" for _ in range(11)]]
 
     # ----- FUNCION DE MODIFICACION DE REGISTROS -----
+    @decorador_modificacion
     def modify_record(self, data: list) -> list:
         """
         Funcion para la modificacion del registro seleccionado de la base de datos.
@@ -110,4 +155,4 @@ class ManageData:
         )
         self.aux.update_treeview(self.tree)
 
-        return [["" for _ in range(11)]]
+        # return [["" for _ in range(11)]]

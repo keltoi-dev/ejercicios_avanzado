@@ -1,0 +1,3 @@
+2024-04-07 21:07:57.520299 - Se utilizo el metodo create_record
+2024-04-07 21:10:41.942565 - Se utilizo el metodo modify_record
+2024-04-07 21:10:47.876075 - Se utilizo el metodo delete_record

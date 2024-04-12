@@ -1,3 +1,9 @@
-2024-04-07 21:07:57.520299 - Se utilizo el metodo create_record
-2024-04-07 21:10:41.942565 - Se utilizo el metodo modify_record
-2024-04-07 21:10:47.876075 - Se utilizo el metodo delete_record
+20:39:05--08/04/24 - Se utilizo el metodo create_record 
+Datos: ['33333333', '33333333333', 'Raul', 'Torres', 'Calle 223', '08-10-2000', '08-04-2024', '', '', ''] 
+
+20:39:24--08/04/24 - Se utilizo el metodo modify_record 
+Datos: ['33333333', '33333333333', 'Raul', 'Torres', 'Calle 223', '08-10-2000', '08-04-2024', 'Casa 4', 'Segurito', '44000'] 
+
+20:39:31--08/04/24 - Se utilizo el metodo delete_record 
+Datos: ['33333333', '33333333333', 'Raul', 'Torres', 'Calle 223', '08-10-2000', '08-04-2024', 'Casa 4', 'Segurito', '44000.0'] 
+

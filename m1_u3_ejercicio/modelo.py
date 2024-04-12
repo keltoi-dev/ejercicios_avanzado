@@ -7,45 +7,57 @@ from manejo_base import ManageBase, BaseError
 from aux_modelo import Auxiliares
 from verifica_campos import RegexCampos, RegexError
 import os
-import datetime
+from datetime import datetime
 
 
 # ***** DECORADORES *****
+
+
+# Decorador para el metodo alta
 def decorador_alta(func):
     def envelope(*args, **kwargs):
-        print("Se ejecuto el metodo de alta")
-        func(*args, **kwargs)
-        funcion_log(func.__name__)
+        data = func(*args, **kwargs)
+        if isinstance(data, list):
+            print("Se ejecuto el metodo de alta")
+            funcion_log(func.__name__, data)
+        else:
+            return data
 
     return envelope
 
 
+# Decorador para el metodo baja
 def decorador_baja(func):
     def envelope(*args, **kwargs):
+        data = func(*args, **kwargs)
         print("Se ejecuto el metodo de baja")
-        func(*args, **kwargs)
-        funcion_log(func.__name__)
+        funcion_log(func.__name__, data)
 
     return envelope
 
 
+# Decorador para el metodo modificar
 def decorador_modificacion(func):
     def envelope(*args, **kwargs):
+        data = func(*args, **kwargs)
         print("Se ejecuto el metodo de modificar")
-        func(*args, **kwargs)
-        funcion_log(func.__name__)
+        funcion_log(func.__name__, data)
 
     return envelope
 
 
-def funcion_log(parameter):
+# Funcion para guardar un log en un archivo txt
+def funcion_log(parameter, data):
     BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
     ruta = os.path.join(BASE_DIR, "function_log.txt")
     log_function = open(ruta, "a")
     print(
-        datetime.datetime.now(),
+        datetime.now().strftime("%H:%M:%S--%d/%m/%y"),
         "- Se utilizo el metodo",
         parameter,
+        "\nDatos:",
+        data,
+        "\n",
         file=log_function,
     )
 
@@ -82,7 +94,7 @@ class ManageData:
             self.l_status.config(
                 text="Complete todos los campos.", background="#FF5656"
             )
-
+            return "Se deben completar los campos obligatorios."
         else:
             try:
                 self.dni = RegexCampos("^\d{7,8}$", self.data[0], "Dni en alta")
@@ -98,7 +110,7 @@ class ManageData:
                     )
                     self.aux.update_treeview(self.tree)
                     self.aux_vista.set_entry([["" for _ in range(11)]])
-                    return None
+                    return self.data
                 except:
                     BaseError().guardar_error()
                     self.l_status.config(
@@ -133,8 +145,9 @@ class ManageData:
             text="Los datos han sido eliminados correctamente.",
             background="#B9F582",
         )
+        self.aux_vista.set_entry([["" for _ in range(11)]])
 
-        # return [["" for _ in range(11)]]
+        return self.data
 
     # ----- FUNCION DE MODIFICACION DE REGISTROS -----
     @decorador_modificacion
@@ -154,5 +167,6 @@ class ManageData:
             background="#B9F582",
         )
         self.aux.update_treeview(self.tree)
+        self.aux_vista.set_entry([["" for _ in range(11)]])
 
-        # return [["" for _ in range(11)]]
+        return self.data

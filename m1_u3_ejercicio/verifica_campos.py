@@ -5,7 +5,7 @@ verifica_campos.py:
 
 import re
 import os
-import datetime
+from datetime import datetime
 
 
 class RegexError(Exception):
@@ -21,7 +21,7 @@ class RegexError(Exception):
         """
         log_errors = open(self.ruta, "a")
         print(
-            datetime.datetime.now(),
+            datetime.now().strftime("%H:%M:%S--%d/%m/%y"),
             "- Se ingreso mal el dato en",
             self.detalle,
             file=log_errors,

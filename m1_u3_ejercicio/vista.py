@@ -265,7 +265,6 @@ class MasterWindow:
             )
             if option:
                 self.modelo.delete_record(data_list)
-                self.vista.set_entry([["" for _ in range(11)]])
             else:
                 self.l_status.config(
                     text="Se ha cancelado la eliminación de los datos.",
@@ -288,7 +287,6 @@ class MasterWindow:
             )
             if option:
                 self.modelo.modify_record(data_list)
-                self.vista.set_entry([["" for _ in range(11)]])
             else:
                 self.l_status.config(
                     text="Se ha cancelado la modificación de los datos.",

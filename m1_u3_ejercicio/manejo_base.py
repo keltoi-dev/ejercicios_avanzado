@@ -5,7 +5,7 @@ manejo_base.py:
 """
 
 import os
-import datetime
+from datetime import datetime
 from peewee import SqliteDatabase, Model
 from peewee import IntegerField, CharField, FloatField
 
@@ -162,7 +162,7 @@ class BaseError(Exception):
         """
         log_errors = open(self.ruta2, "a")
         print(
-            datetime.datetime.now(),
+            datetime.now().strftime("%H:%M:%S--%d/%m/%y"),
             "- Se intenta cargar un dni ya existente en la base en Alta",
             file=log_errors,
         )

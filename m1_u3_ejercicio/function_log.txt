@@ -7,3 +7,33 @@ Datos: ['33333333', '33333333333', 'Raul', 'Torres', 'Calle 223', '08-10-2000', 
 20:39:31--08/04/24 - Se utilizo el metodo delete_record 
 Datos: ['33333333', '33333333333', 'Raul', 'Torres', 'Calle 223', '08-10-2000', '08-04-2024', 'Casa 4', 'Segurito', '44000.0'] 
 
+19:52:24--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['44959151', '27449591512', 'Maria Dolores', 'Snachez', 'Calesita', '09-11-2000', '22-12-2023', 'Casa 3', 'Seguridad Total', '25000.0'] 
+
+19:52:36--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['28001133', '20280011336', 'Martin', 'Gomez', 'San Pedrito', '10-03-1981', '14-12-2023', 'Casa 3', 'Seguridad Total', '28000'] 
+
+20:01:01--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['44959151', '27449591512', 'Maria Dolores', 'Snachez', 'Calesita', '09-11-2000', '22-12-2023', 'Casa 3', 'Seguridad Total', '25000.0'] 
+
+20:01:53--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['44959151', '27449591512', 'Maria Dolores', 'Snachez', 'Calesita', '09-11-2000', '22-12-2023', 'Casa 3', 'Seguridad Total', '25000.0'] 
+
+20:05:01--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['111', '', '', '', '', '18-04-2024', '18-04-2024', '', '', ''] 
+
+20:05:09--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['44959151', '27449591512', 'Maria Dolores', 'Snachez', 'Calesita', '09-11-2000', '22-12-2023', 'Casa 3', 'Seguridad Total', '25000.0'] 
+
+20:23:52--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['44959151', '27449591512', 'Maria Dolores', 'Snachez', 'Calesita', '09-11-2000', '22-12-2023', 'Casa 3', 'Seguridad Total', '25000.0'] 
+
+20:25:35--18/04/24 - Se utilizo el metodo modify_record 
+Datos: ['35653356', '20356533567', 'Jacinto', 'Garcia', 'La Callecita', '15-04-1990', '20-12-2023', 'Casa 1', 'Seguridad Total', '29000.0'] 
+
+20:28:32--18/04/24 - Se utilizo el metodo create_record 
+Datos: ['33333333', '33333333333', 'aaaaaa', 'lllllll', '', '18-04-2024', '18-04-2024', '', '', ''] 
+
+20:28:54--18/04/24 - Se utilizo el metodo delete_record 
+Datos: ['33333333', '33333333333', 'aaaaaa', 'lllllll', '', '18-04-2024', '18-04-2024', '', '', ''] 
+

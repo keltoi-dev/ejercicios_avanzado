@@ -66,15 +66,16 @@ def funcion_log(parameter, data):
 
 
 class ManageData:
-    def __init__(self, l_status: object, tree: object) -> None:
+    def __init__(self, l_status: object, tree: object, aux_vista: object) -> None:
         self.l_status = l_status
         self.tree = tree
         self.aux = Auxiliares()
         self.base = ManageBase()
+        self.aux_vista = aux_vista
 
     # ----- FUNCION ALTA DE REGISTRO -----
     @decorador_alta
-    def create_record(self, data: list, aux_vista) -> str:
+    def create_record(self, data: list) -> str:
         """
         Función de alta de los datos capturados en una lista de los campos entry de la vista.
         Verifica que los campos dni, cuil, nombre y apellido no esten vacios.
@@ -89,7 +90,6 @@ class ManageData:
         :rtype: str
         """
         self.data = data
-        self.aux_vista = aux_vista
         if not self.data[0] or not self.data[1] or not self.data[2] or not self.data[3]:
             self.l_status.config(
                 text="Complete todos los campos.", background="#FF5656"

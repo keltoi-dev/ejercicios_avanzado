@@ -132,12 +132,12 @@ class MasterWindow:
         )
         widget_1.boton_1(
             "BAJA",
-            lambda: self.delete_record_view(),
+            lambda: self.delete_record_view(e_dni),
             2,
         )
         widget_1.boton_1(
             "MODIFICACION",
-            lambda: self.modify_record_view(),
+            lambda: self.modify_record_view(e_dni),
             3,
         )
         widget_1.boton_1(
@@ -217,7 +217,6 @@ class MasterWindow:
         )
 
         # Instanciar objetos - Modulo del modelo y auxiliar de la vista
-        self.modelo = ManageData(self.l_status, tree)
         self.vista = AuxVista(
             var_dni,
             var_cuil,
@@ -235,6 +234,8 @@ class MasterWindow:
             e_cuil,
         )
 
+        self.modelo = ManageData(self.l_status, tree, self.vista)
+
         # ----- ACTUALIZACION DEL TREEVIEW EN EL ARRANQUE DE LA APP -----
         aux.update_treeview(tree, var_filtro.get())
 
@@ -244,12 +245,12 @@ class MasterWindow:
         Control de la información para el alta llamando al módulo modelo - create_record
         Advertencia de errores con ventanas emergentes showeror
         """
-        info = self.modelo.create_record(self.vista.create_list(), self.vista)
+        info = self.modelo.create_record(self.vista.create_list())
 
         if info:
             showerror("ATENCIÓN!!", info)
 
-    def delete_record_view(self) -> None:
+    def delete_record_view(self, e_dni) -> None:
         """
         Control de la información, verifica la existencia de datos en el campo de dni,
         para la baja llamando al módulo modelo - delete_record.
@@ -260,18 +261,24 @@ class MasterWindow:
             showerror("ATENCIÓN!!", "No se ha seleccionado ningún registro.")
             self.l_status.config(text="El campo DNI esta vacio.", background="#FF5656")
         else:
-            option = askokcancel(
-                "Borra registro", "¿Está seguro que quiere eliminar ese registro?"
-            )
-            if option:
-                self.modelo.delete_record(data_list)
+            if e_dni.__getitem__("state") == "disabled":
+                option = askokcancel(
+                    "Borra registro", "¿Está seguro que quiere eliminar ese registro?"
+                )
+                if option:
+                    self.modelo.delete_record(data_list)
+                else:
+                    self.l_status.config(
+                        text="Se ha cancelado la eliminación de los datos.",
+                        background="#B9F582",
+                    )
             else:
                 self.l_status.config(
-                    text="Se ha cancelado la eliminación de los datos.",
-                    background="#B9F582",
+                    text="Debe seleccionar una fila en la tabla o buscar un dni válido",
+                    background="#FF5656",
                 )
 
-    def modify_record_view(self) -> None:
+    def modify_record_view(self, e_dni) -> None:
         """
         Control de la información, verifica la existencia de datos en el campo de dni,
         para modificaciones llamando al módulo modelo - modify_record.
@@ -282,15 +289,22 @@ class MasterWindow:
             showerror("ATENCIÓN!!", "No se ha seleccionado ningún registro.")
             self.l_status.config(text="El campo DNI esta vacio.", background="#FF5656")
         else:
-            option = askokcancel(
-                "Modifica registro", "¿Está seguro que quiere modificar ese registro?"
-            )
-            if option:
-                self.modelo.modify_record(data_list)
+            if e_dni.__getitem__("state") == "disabled":
+                option = askokcancel(
+                    "Modifica registro",
+                    "¿Está seguro que quiere modificar ese registro?",
+                )
+                if option:
+                    self.modelo.modify_record(data_list)
+                else:
+                    self.l_status.config(
+                        text="Se ha cancelado la modificación de los datos.",
+                        background="#B9F582",
+                    )
             else:
                 self.l_status.config(
-                    text="Se ha cancelado la modificación de los datos.",
-                    background="#B9F582",
+                    text="Debe seleccionar una fila en la tabla o buscar un dni válido",
+                    background="#FF5656",
                 )
 
     def search_record_view(self, var_dni: object) -> None:

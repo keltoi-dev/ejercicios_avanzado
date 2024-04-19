@@ -1,2 +1,4 @@
 20:39:46--08/04/24 - Se ingreso mal el dato en Dni en alta
 20:40:36--08/04/24 - Se intenta cargar un dni ya existente en la base en Alta
+16:23:44--19/04/24 - Se ingreso mal el dato en Búsqueda de dni
+16:24:27--19/04/24 - Se ingreso mal el dato en Búsqueda de dni

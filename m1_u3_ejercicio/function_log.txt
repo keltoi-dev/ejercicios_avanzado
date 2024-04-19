@@ -37,3 +37,6 @@ Datos: ['33333333', '33333333333', 'aaaaaa', 'lllllll', '', '18-04-2024', '18-04
 20:28:54--18/04/24 - Se utilizo el metodo delete_record 
 Datos: ['33333333', '33333333333', 'aaaaaa', 'lllllll', '', '18-04-2024', '18-04-2024', '', '', ''] 
 
+16:24:09--19/04/24 - Se utilizo el metodo modify_record 
+Datos: ['33444555', '20334445550', 'Jose', 'Perez', 'Cucha Cucha', '23-06-1987', '15-12-2023', 'Casa 1', 'Seguridad Total', '28000.0'] 
+

@@ -1,0 +1,3 @@
+21:01:02--22/04/24 - Se ingreso mal el dato en Búsqueda de dni
+21:01:33--22/04/24 - Se ingreso mal el dato en CUIL en alta
+21:01:44--22/04/24 - Se intenta cargar un dni ya existente en la base en Alta

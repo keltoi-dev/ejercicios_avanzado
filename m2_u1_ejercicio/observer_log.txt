@@ -1,0 +1,2 @@
+Resultado del Observador A - Se cargaron los siguientes datos:
+ ((['33333333', '33333333333', 'Carlos', 'Juarez', 'Calle 34', '22-04-2000', '22-04-2024', '', '', ''],),)

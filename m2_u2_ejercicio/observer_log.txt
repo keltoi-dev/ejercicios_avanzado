@@ -1,2 +1,6 @@
 Resultado del Observador A - Se cargaron los siguientes datos:
  ((['33333333', '33333333333', 'Juan', 'Martinez', 'Calle 44', '3-04-1994', '30-04-2024', 'Casa 4', 'Seguro', '30000'],),)
+Resultado del Observador A - Se cargaron los siguientes datos:
+ ((['44444444', '44444444444', 'qqqqqq', 'aaaaaaa', '', '01-05-2024', '01-05-2024', '', '', ''],),)
+Resultado del Observador A - Se cargaron los siguientes datos:
+ ((['4444444', '33333344444', 'rrrrrrrrr', 'rrrrrrrrrrr', '', '01-05-2024', '01-05-2024', '', '', ''],),)

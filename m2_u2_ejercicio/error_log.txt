@@ -1,1 +1,2 @@
 18:11:49--30/04/24 - Se ingreso mal el dato en Dni en alta
+20:12:53--30/04/24 - Se intenta cargar un dni ya existente en la base en Alta

@@ -1,6 +1,14 @@
 Resultado del Observador A - Se cargaron los siguientes datos:
  ((['33333333', '33333333333', 'Juan', 'Martinez', 'Calle 44', '3-04-1994', '30-04-2024', 'Casa 4', 'Seguro', '30000'],),)
 Resultado del Observador A - Se cargaron los siguientes datos:
+<<<<<<< HEAD
  ((['44444444', '44444444444', 'qqqqqq', 'aaaaaaa', '', '01-05-2024', '01-05-2024', '', '', ''],),)
 Resultado del Observador A - Se cargaron los siguientes datos:
  ((['4444444', '33333344444', 'rrrrrrrrr', 'rrrrrrrrrrr', '', '01-05-2024', '01-05-2024', '', '', ''],),)
+=======
+ ((['44444444', '44444444444', 'Carlos', 'Paz', 'Calle 23', '30-09-2004', '30-04-2024', '', '', ''],),)
+Resultado del Observador A - Se cargaron los siguientes datos:
+ ((['55555555', '55555555555', 'kkkkkkkkk', 'kkkkkkkkkl', '', '30-04-2024', '30-04-2024', '', '', ''],),)
+Resultado del Observador A - Se cargaron los siguientes datos:
+ ((['66666666', '66666666666', 'dddddddddddd', 'eeeeeeeeeee', '', '30-04-2024', '30-04-2024', '', '', ''],),)
+>>>>>>> e9262088dd215782b85603e7eb4711f18e805846

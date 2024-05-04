@@ -1,0 +1,6 @@
+17:16:01--04/05/24 - Se utilizo el metodo create_record 
+Datos: ['33333333', '33333333333', 'ddddddd', 'sssssssss', '', '04-05-2024', '04-05-2024', '', '', ''] 
+
+17:16:15--04/05/24 - Se utilizo el metodo delete_record 
+Datos: ['33333333', '33333333333', 'ddddddd', 'sssssssss', '', '04-05-2024', '04-05-2024', '', '', ''] 
+

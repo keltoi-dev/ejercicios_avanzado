@@ -1,2 +1,0 @@
-Resultado del Observador A - Se cargaron los siguientes datos:
- ((['33333333', '33333333333', 'ddddddd', 'sssssssss', '', '04-05-2024', '04-05-2024', '', '', ''],),)

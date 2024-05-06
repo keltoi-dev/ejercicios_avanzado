@@ -13,7 +13,7 @@ import os
 
 from aux_modelo import Auxiliares
 from modelo import ManageData
-from aux_vista import AuxVista
+from aux_vista import AuxVista, ServerState
 
 # Instancia del modulo auxiliar del modelo
 aux = Auxiliares()
@@ -41,14 +41,15 @@ class MasterWindow:
                 
                 AUTOR: Germán Fraga
 
-                Patrón Observador - Diplomatura Python 3
+                Entrega final - Diplomatura Python 3
                 Nivel avanzado.
-                Paradigama de Programación Orientada a Objetos
-                07/4/2024
+                Paradigama de Programación Orientada a Objetos,
+                patrón observador, decoradores, socket, etc.
+                04/05/2024
                 """
 
         # Construccion de la ventana principal
-        self.window.title("Patrón Observador - Python Avanzado")
+        self.window.title("Entrega final - Python Avanzado")
         self.window.resizable(False, False)
         ruta = os.getcwd() + os.sep + "img" + os.sep
         self.window.iconbitmap(ruta + "python.ico")
@@ -61,7 +62,7 @@ class MasterWindow:
 
         Label(
             self.window,
-            text="GESTION DE NOMINA DE EMPLEADOS",
+            text="GESTION DE NOMINA DE EMPLEADOS - SERVIDOR",
             bg="#B9F582",
             font="Bold",
         ).grid(row=0, column=0, columnspan=2, sticky="w" + "e")
@@ -117,10 +118,16 @@ class MasterWindow:
 
         # ----- LABEL DE STATUS -----
         self.l_status = Label(self.window, text="Ok.", bg="#B9F582")
-        self.l_status.grid(row=3, column=0, columnspan=2, sticky="w" + "e")
+        self.l_status.grid(row=5, column=0, columnspan=2, sticky="w" + "e")
+
+        self.l_server = Label(
+            self.window, text="Servidor apagado.", fg="#FF5656", font="Bold"
+        )
+        self.l_server.grid(row=3, column=1, sticky="w")
 
         Label(frame_tree, text="FILTRAR POR OBRA").grid(row=0, column=0, sticky="e")
 
+        widget_3 = WidgetsWindows(self.window)
         widget_2 = WidgetsWindows(frame_datos)
         widget_1 = WidgetsWindows(frame_menu)
 
@@ -163,6 +170,13 @@ class MasterWindow:
             lambda: self.vista.var_filtro.set(
                 aux.update_treeview(tree, var_filtro.get().capitalize())
             ),
+            0,
+        )
+
+        widget_3.boton_1(
+            "SERVER ON/OFF",
+            lambda: self.server_state.try_connection(self.l_server),
+            3,
             0,
         )
 
@@ -235,6 +249,7 @@ class MasterWindow:
         )
 
         self.modelo = ManageData(self.l_status, tree, self.vista)
+        self.server_state = ServerState()
 
         # ----- ACTUALIZACION DEL TREEVIEW EN EL ARRANQUE DE LA APP -----
         aux.update_treeview(tree, var_filtro.get())
@@ -323,25 +338,27 @@ class WidgetsWindows(MasterWindow):
     def __init__(self, frame: object) -> None:
         self.frame = frame
 
-    def boton_1(self, text_btn: str, instruction: str, position: int) -> None:
+    def boton_1(self, text_btn: str, instruction: str, x: int, y: int = 0) -> None:
         """
         Objeto para generar botones de tkinter.
 
         :param text_btn: Texto del botón
         :param instruction: Función lambda para ejecutar desde el botón
-        :param position: Valor de la fila del botón
+        :param x: Valor de la fila del botón
+        :param y: Valor de la columna del botón
         """
         self.text_btn = text_btn
         self.instruction = instruction
-        self.position = position
+        self.x = x
+        self.y = y
         self.btn = Button(
             self.frame,
             text=self.text_btn,
             width=15,
             command=self.instruction,
-            borderwidth=0,
+            borderwidth=0.5,
         )
-        self.btn.grid(row=self.position, column=0, padx=2, pady=9)
+        self.btn.grid(row=self.x, column=self.y, padx=2, pady=9)
 
     def boton_2(self, text_btn: str, instruction: str, position: int) -> None:
         """

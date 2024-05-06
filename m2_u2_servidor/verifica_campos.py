@@ -4,13 +4,11 @@ verifica_campos.py:
 """
 
 import re
-import os
 from datetime import datetime
+from record_log import RecordLog
 
 
 class RegexError(Exception):
-    BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
-    ruta = os.path.join(BASE_DIR, "error_log.txt")
 
     def __init__(self, detalle: str) -> None:
         self.detalle = detalle
@@ -19,13 +17,13 @@ class RegexError(Exception):
         """
         Función que guarda el tipo de error, donde se localizó y la fecha y hora.
         """
-        log_errors = open(self.ruta, "a")
-        print(
-            datetime.now().strftime("%H:%M:%S--%d/%m/%y"),
-            "- Se ingreso mal el dato en",
-            self.detalle,
-            file=log_errors,
+        message = (
+            datetime.now().strftime("%H:%M:%S--%d/%m/%y")
+            + "- Se ingreso mal el dato del "
+            + self.detalle
         )
+        file_name = "error_log.txt"
+        RecordLog().save_log(file_name, message)
 
 
 class RegexCampos:

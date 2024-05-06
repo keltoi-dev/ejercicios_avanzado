@@ -8,6 +8,7 @@ import os
 from datetime import datetime
 from peewee import SqliteDatabase, Model
 from peewee import IntegerField, CharField, FloatField
+from record_log import RecordLog
 
 
 BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
@@ -150,9 +151,6 @@ class ManageBase:
 
 class BaseError(Exception):
 
-    BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
-    ruta2 = os.path.join(BASE_DIR, "error_log.txt")
-
     def __init__(self) -> None:
         pass
 
@@ -160,9 +158,9 @@ class BaseError(Exception):
         """
         Función que guarda el tipo de error, donde se localizó y la fecha y hora.
         """
-        log_errors = open(self.ruta2, "a")
-        print(
-            datetime.now().strftime("%H:%M:%S--%d/%m/%y"),
-            "- Se intenta cargar un dni ya existente en la base en Alta",
-            file=log_errors,
+        message = (
+            datetime.now().strftime("%H:%M:%S--%d/%m/%y")
+            + "- Se intenta cargar un dni ya existente en la base en Alta"
         )
+        file_name = "error_log.txt"
+        RecordLog().save_log(file_name, message)

@@ -6,19 +6,17 @@ cliente.py:
 from tkinter import Tk
 from tkinter import Menu, Label, Button, Frame
 from tkinter import StringVar, Entry
-from tkinter import ttk
 from tkinter.messagebox import showinfo
-from tkcalendar import DateEntry
-from tkinter.messagebox import showerror, askokcancel
+from tkinter.messagebox import askokcancel
 import os
 import socket
+import re
 
-from aux_modelo import Auxiliares
-from modelo import ManageData
-from aux_vista import AuxVista
-
-# Instancia del modulo auxiliar del modelo
-aux = Auxiliares()
+__author__ = "German Fraga"
+__maintainer__ = "German Fraga"
+__email__ = "gdfraga@gmail.com"
+__copyright__ = "Copyright 2024"
+__version__ = "0.0.1"
 
 
 class MasterWindow:
@@ -27,25 +25,24 @@ class MasterWindow:
 
         """
         Se dibuja un menú con solo el Acerca de... con la información de la aplicación.
-        Construye una ventana principal con tres frames. Esta ventana contiene también el título y la barra de estado.
-        Los frames son: El de menú, que contiene los botones de alta, baja, modificación, limpieza y salir.
-        El de datos, que se compone de todas las cajas de entrada para la información a guardar en la base de datos.
-        El del treeview, donde se dibujara la planilla con los datos cargados en la base de datos con
-        la posibilidad de filtrar por obras.
+        Construye una ventana principal con un frame. Esta ventana contiene también el título y la barra de estado.
+        El frame engloba a todas las cajas de entrada para mostrar la información recuperada de la base de datos.
+        En la parte inferior estan los botones para la limpieza de los campos y salir de la aplicación.
         """
 
         # ----- DECLARACION DE TEXTO PARA VENTANA ACERCA DE ... -----
         info = """
-                Aplicación para el cliente. Consulta un 
-                número de dni al servidor y recibe toda 
-                la informacion correspondiente.
+                Aplicación para el cliente. Consulta un número
+                de dni al servidor y recibe toda la informacion
+                correspondiente.
                 
                 AUTOR: Germán Fraga
 
-                Patrón Observador - Diplomatura Python 3
+                Entrega final - Diplomatura Python 3
                 Nivel avanzado.
-                Paradigama de Programación Orientada a Objetos
-                07/4/2024
+                Paradigama de Programación Orientada a Objetos,
+                patrón observador, decoradores, socket, etc.
+                04/05/2024
                 """
 
         # Construccion de la ventana principal
@@ -117,20 +114,20 @@ class MasterWindow:
 
         widget_1.boton_1(
             "LIMPIAR",
-            lambda: self.set_entry(["" for _ in range(10)]),
+            lambda: self.set_entry(["" for _ in range(11)]),
             2,
             0,
         )
         widget_1.boton_1(
             "SALIR",
-            lambda: self.close_app(self.window),
+            lambda: self.close_app(),
             3,
             0,
         )
 
         widget_2.boton_2(
-            "Buscar",
-            lambda: self.consult_server(self.var_dni),
+            "CONSULTAR",
+            lambda: self.consult_server(self.var_dni.get()),
             1,
         )
 
@@ -142,7 +139,7 @@ class MasterWindow:
             textvariable=self.var_cuil,
             width=15,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_cuil.grid(row=1, column=5)
         e_nombre = Entry(
@@ -150,7 +147,7 @@ class MasterWindow:
             textvariable=self.var_nombre,
             width=80,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_nombre.grid(row=2, column=1, columnspan=5)
         e_apellido = Entry(
@@ -158,7 +155,7 @@ class MasterWindow:
             textvariable=self.var_apellido,
             width=80,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_apellido.grid(row=3, column=1, columnspan=5)
         e_direccion = Entry(
@@ -166,23 +163,23 @@ class MasterWindow:
             textvariable=self.var_domicilio,
             width=80,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_direccion.grid(row=4, column=1, columnspan=5)
         e_fnacimiento = Entry(
             frame_datos,
-            textvariable=self.var_domicilio,
+            textvariable=self.var_fnacimiento,
             width=15,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_fnacimiento.grid(row=5, column=1)
         e_falta = Entry(
             frame_datos,
-            textvariable=self.var_domicilio,
+            textvariable=self.var_falta,
             width=15,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_falta.grid(row=5, column=5)
         e_obra = Entry(
@@ -190,7 +187,7 @@ class MasterWindow:
             textvariable=self.var_obra,
             width=80,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_obra.grid(row=6, column=1, columnspan=5)
         e_art = Entry(
@@ -198,7 +195,7 @@ class MasterWindow:
             textvariable=self.var_art,
             width=80,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_art.grid(row=7, column=1, columnspan=5)
         e_jornal = Entry(
@@ -206,54 +203,66 @@ class MasterWindow:
             textvariable=self.var_jornal,
             width=15,
             borderwidth=0,
-            state="disabled",
+            state="readonly",
         )
         e_jornal.grid(row=8, column=1)
 
-    def consult_server(self, var_dni: object) -> None:
+    def consult_server(self, var_dni: str) -> None:
         """
-        Función auxiliar para el llamando al módulo auxiliar de modelo - search_record.
-        Advertencia de errores con ventanas emergentes showeror y confirmación con askokcancel.
+        Función que lanza la consulta al servidor y recibe la informacion completa del empleado.
 
-        :param var_dni: Objeto entry del frame datos
+        :param var_dni: String
         """
 
-        HOST, PORT = "localhost", 9999
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        message = str(var_dni.get())
-        sock.sendto(message.encode("UTF-8"), (HOST, PORT))
-        received = sock.recvfrom(1024)
-        data_list = eval(received[0].decode("UTF-8"))
-        self.set_entry(data_list)
+        if re.match("^\d{7,8}$", var_dni):
+            try:
+                HOST, PORT = "localhost", 456
+                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                message = str(var_dni)
+                sock.sendto(message.encode("UTF-8"), (HOST, PORT))
+                received = sock.recvfrom(1024)
+                data_list = eval(received[0].decode("UTF-8"))
+                if data_list[1] != "":
+                    self.set_entry(data_list)
+                else:
+                    self.l_status.config(
+                        text="El dni seleccionado no existe en la base de datos.",
+                        background="#FF5656",
+                    )
+            except:
+                self.l_status.config(
+                    text="El servidor no esta conectado.", background="#FF5656"
+                )
+        else:
+            self.l_status.config(
+                text="Complete correctamente el campo dni.", background="#FF5656"
+            )
 
     def set_entry(self, data: list) -> None:
         """
-        Esta función se utiliza para la carga de la información, seleccionada en el treeview o consultada por la búsqueda,
-        en todo los entry del frame de datos. En esta situación se deshabilitan los campos de DNI y CUIL que no pueden ser modificados.
-        También se le puede enviar una lista vacia para poder limpiar todos los campos y en esta ocasión se habilitan los entry bloqueados.
+        Esta función se utiliza para la carga de la información, consultada al servidor, en todos los entrys.
+        También se le puede enviar una lista vacia para poder limpiar todos los campos.
 
         :param data_list: La lista con toda la información a cargar o vacia para limpiar
         """
 
-        self.var_dni.set(data[0])
-        self.var_cuil.set(data[1])
-        self.var_nombre.set(data[2])
-        self.var_apellido.set(data[3])
-        self.var_domicilio.set(data[4])
-        self.var_fnacimiento.set(data[5])
-        self.var_falta.set(data[6])
-        self.var_obra.set(data[7])
-        self.var_art.set(data[8])
-        self.var_jornal.set(data[9])
+        self.var_dni.set(data[1])
+        self.var_cuil.set(data[2])
+        self.var_nombre.set(data[3])
+        self.var_apellido.set(data[4])
+        self.var_domicilio.set(data[5])
+        self.var_fnacimiento.set(data[6])
+        self.var_falta.set(data[7])
+        self.var_obra.set(data[8])
+        self.var_art.set(data[9])
+        self.var_jornal.set(data[10])
 
         self.l_status.config(text="Ok.", background="#B9F582")
 
     # ----- FUNCION DE CIERRE DE LA APLICACION -----
-    def close_app(self, window) -> None:
+    def close_app(self) -> None:
         """
         Función para el cierre de la aplicación, con una ventana emergente que consulta si está seguro de esta operación.
-
-        :param window: Objeto de tkinter, la ventana principal
         """
         option = askokcancel("Cerrar la aplicación", "¿Está seguro que quiere salir?")
         if option:
@@ -270,7 +279,8 @@ class WidgetsWindows(MasterWindow):
 
         :param text_btn: Texto del botón
         :param instruction: Función lambda para ejecutar desde el botón
-        :param position: Valor de la fila del botón
+        :param x: Valor de la fila del botón
+        :param y: Valor de la columna del botón
         """
         self.text_btn = text_btn
         self.instruction = instruction
@@ -281,7 +291,7 @@ class WidgetsWindows(MasterWindow):
             text=self.text_btn,
             width=15,
             command=self.instruction,
-            borderwidth=0,
+            borderwidth=0.5,
         )
         self.btn.grid(row=self.x, column=self.y, padx=2, pady=9)
 
@@ -299,7 +309,7 @@ class WidgetsWindows(MasterWindow):
         btn_buscar = Button(
             self.frame,
             text=self.text_btn,
-            width=6,
+            width=12,
             bg="#a1a1a1",
             command=self.instruction,
             borderwidth=0,
@@ -309,6 +319,6 @@ class WidgetsWindows(MasterWindow):
 
 if __name__ == "__main__":
     root = Tk()
-    # Instancia el controller
+    # Instancia de la ventana
     view = MasterWindow(root)
     root.mainloop()

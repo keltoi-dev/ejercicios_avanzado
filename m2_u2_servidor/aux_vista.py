@@ -1,11 +1,17 @@
 """
 aux_vista.py:
-    Contiene funciones auxiliares a la vista, como el seteo de los widgets entry y,
-    la construcción de la lista para movimiento de toda la información y la función
-    de cierre de la aplicación.
+    Contiene funciones auxiliares a la vista, como el seteo de los widgets entrys,
+    la construcción de la lista para movimiento de toda la información, la función
+    de cierre de la aplicación y crear un hilo en el cual disparar el subporceso para
+    crear el servidor.
 """
 
 from tkinter.messagebox import askokcancel
+from pathlib import Path
+import subprocess
+import threading
+import os
+import sys
 
 
 # ***** MANIPULACION DE DATOS *****
@@ -111,3 +117,41 @@ class AuxVista:
         option = askokcancel("Cerrar la aplicación", "¿Está seguro que quiere salir?")
         if option:
             window.destroy()
+
+
+class ServerState:
+
+    def __init__(self):
+        """
+        Constructor de la clase que inicializa la variable the_process y establece la ruta para el servidor.
+        """
+        self.the_process = ""
+        self.raiz = Path(__file__).resolve().parent
+        self.ruta_server = os.path.join(self.raiz, "servidor.py")
+
+    def try_connection(self, l_server: object) -> None:
+        """
+        Funcion que abre el hilo para correr el servidor
+
+        :param l_server: Objeto label de tkinter
+        """
+        if self.the_process != "":
+            self.the_process.kill()
+            l_server.config(text="Servidor apagado.", fg="#FF5656", font="Bold")
+            self.the_process = ""
+        else:
+            l_server.config(text="Servidor encendido.", fg="#308C30", font="Bold")
+            threading.Thread(
+                target=self.lanzar_servidor, args=(True,), daemon=True
+            ).start()
+
+    def lanzar_servidor(self, var: bool) -> None:
+        """
+        Función para la ejecutar el subproceso donde correrá el servidor dentro del hilo creado anteriormente.
+
+        :param var: booleano
+        """
+        the_path = self.ruta_server
+        if var == True:
+            self.the_process = subprocess.Popen([sys.executable, the_path])
+            self.the_process.communicate()

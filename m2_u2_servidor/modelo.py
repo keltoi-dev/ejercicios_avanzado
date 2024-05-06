@@ -6,9 +6,9 @@ modelo.py:
 from manejo_base import ManageBase, BaseError
 from aux_modelo import Auxiliares
 from verifica_campos import RegexCampos, RegexError
-import os
 from datetime import datetime
 from observador import Subject
+from record_log import RecordLog
 
 
 # ***** DECORADORES *****
@@ -19,7 +19,7 @@ Generando una salida por consola y un archivo log.
 
 
 # Decorador para el metodo alta
-def decorador_alta(func):
+def decorador_alta(func) -> list:
     def envelope(*args, **kwargs):
         data = func(*args, **kwargs)
         if isinstance(data, list):
@@ -32,7 +32,7 @@ def decorador_alta(func):
 
 
 # Decorador para el metodo baja
-def decorador_baja(func):
+def decorador_baja(func) -> list:
     def envelope(*args, **kwargs):
         data = func(*args, **kwargs)
         print("Se ejecuto el metodo de baja")
@@ -42,7 +42,7 @@ def decorador_baja(func):
 
 
 # Decorador para el metodo modificar
-def decorador_modificacion(func):
+def decorador_modificacion(func) -> list:
     def envelope(*args, **kwargs):
         data = func(*args, **kwargs)
         print("Se ejecuto el metodo de modificar")
@@ -52,19 +52,15 @@ def decorador_modificacion(func):
 
 
 # Funcion para guardar un log en un archivo txt
-def funcion_log(parameter, data):
-    BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
-    ruta = os.path.join(BASE_DIR, "decorator_log.txt")
-    log_function = open(ruta, "a")
-    print(
-        datetime.now().strftime("%H:%M:%S--%d/%m/%y"),
-        "- Se utilizo el metodo",
-        parameter,
-        "\nDatos:",
-        data,
-        "\n",
-        file=log_function,
+def funcion_log(parameter: str, data: list) -> None:
+
+    file_name = "decorator_log.txt"
+    message = (
+        datetime.now().strftime("%H:%M:%S--%d/%m/%y")
+        + f"- Se utilizo el metodo {parameter}"
+        + f"\nDatos: {data}\n"
     )
+    RecordLog().save_log(file_name, message)
 
 
 # ***** FUNCIONES PARA ALTAS - BAJAS - MODIFICACIONES *****

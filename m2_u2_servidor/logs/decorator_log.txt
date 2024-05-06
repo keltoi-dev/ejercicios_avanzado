@@ -1,0 +1,9 @@
+19:37:00--06/05/24- Se utilizo el metodo create_record
+Datos: ['33333333', '33333333333', 'Juan', 'Ramirez', 'Calle 33', '16-05-1994', '06-05-2024', '', '', '']
+
+19:37:32--06/05/24- Se utilizo el metodo modify_record
+Datos: ['33333333', '33333333333', 'Juan', 'Ramirez', 'Calle 33', '16-05-1994', '06-05-2024', 'Casa 4', '', '30000']
+
+19:38:22--06/05/24- Se utilizo el metodo delete_record
+Datos: ['33333333', '33333333333', 'Juan', 'Ramirez', 'Calle 33', '16-05-1994', '06-05-2024', 'Casa 4', '', '30000.0']
+

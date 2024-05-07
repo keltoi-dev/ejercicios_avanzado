@@ -1,6 +1,6 @@
 """
 servidor.py
-    Objeto servidor que estable la comunicacion con los clientes.
+    Objeto servidor que recibe y responde a la comunicación con los clientes.
 """
 
 import socketserver

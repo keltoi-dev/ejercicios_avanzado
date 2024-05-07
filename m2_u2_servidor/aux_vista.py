@@ -83,6 +83,7 @@ class AuxVista:
         También se le puede enviar una lista vacia para poder limpiar todos los campos y en esta ocasión se habilitan los entry bloqueados.
 
         :param data_list: La lista con toda la información a cargar o vacia para limpiar
+        :type data_list: list
         """
 
         self.var_dni.set(data_list[0][1])
@@ -108,11 +109,12 @@ class AuxVista:
             self.e_cuil.config(state="disabled")
 
     # ----- FUNCION DE CIERRE DE LA APLICACION -----
-    def close_app(self, window) -> None:
+    def close_app(self, window: object) -> None:
         """
         Función para el cierre de la aplicación, con una ventana emergente que consulta si está seguro de esta operación.
 
         :param window: Objeto de tkinter, la ventana principal
+        :type window: object
         """
         option = askokcancel("Cerrar la aplicación", "¿Está seguro que quiere salir?")
         if option:
@@ -134,6 +136,7 @@ class ServerState:
         Funcion que abre el hilo para correr el servidor
 
         :param l_server: Objeto label de tkinter
+        :type l_server: object
         """
         if self.the_process != "":
             self.the_process.kill()
@@ -149,7 +152,8 @@ class ServerState:
         """
         Función para la ejecutar el subproceso donde correrá el servidor dentro del hilo creado anteriormente.
 
-        :param var: booleano
+        :param var: Estado del servidor
+        :type var: object
         """
         the_path = self.ruta_server
         if var == True:

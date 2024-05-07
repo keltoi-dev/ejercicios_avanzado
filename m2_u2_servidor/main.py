@@ -21,6 +21,7 @@ class Controller:
         Instancia la MasterWindow de la vista
 
         :param root: Objeto de Tk
+        :type root: object
         """
         self.root = root
         # Se instancia la vista

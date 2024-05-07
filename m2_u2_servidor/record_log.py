@@ -14,6 +14,11 @@ class RecordLog:
     def save_log(self, name: str, data: str) -> None:
         """
         Función que establece la ruta, nombre de archivo y guarda la linea correspondiente.
+
+        :param name: Nombre del archivo txt
+        :type name: string
+        :param data: Informacion a guardar en el archivo
+        :type data: string
         """
         BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
         ruta = os.path.join(BASE_DIR, "logs", name)

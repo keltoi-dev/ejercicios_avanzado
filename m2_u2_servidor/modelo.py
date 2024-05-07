@@ -86,9 +86,10 @@ class ManageData(Subject):
         En caso de error retorna textos con el detalle del error, de acuerdo al manejo de las excepciones.
 
         :param data: Lista con la información de los campos
-        :param aux_vista: Objeto que llega desde el módulo vista
+        :type data: list
+
         :returns: un texto para la información de los message error
-        :rtype: str
+        :rtype: string
         """
         self.data = data
         if not self.data[0] or not self.data[1] or not self.data[2] or not self.data[3]:
@@ -141,7 +142,10 @@ class ManageData(Subject):
         Actualiza el treeview e informa en la barra de status la accion.
 
         :param data: Lista con la informacion de los campos
+        :type data: list
+
         :returns: Una lista vacia para limpieza de los campos
+        :rtype: list
         """
         self.data = data
         self.base.delete_row(self.data[0])
@@ -163,7 +167,10 @@ class ManageData(Subject):
         Llama al metodo del ORM para el update de la fila en la base de datos.
 
         :param data: Lista con la informacion de los campos
+        :type data: list
+
         :returns: Una lista vacia para limpieza de los campos
+        :rtype: list
         """
         self.data = data
         self.base.modify_row(self.data)

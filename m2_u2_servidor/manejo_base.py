@@ -62,6 +62,8 @@ class ManageBase:
         Filtra la información por el nombre de la obra para la carga en el treeview.
 
         :param data: String con el dato del campo filtro
+        :type data: string
+
         :returns: Todos la informacion de la tabla Empleados
         :rtype: list[str, int]
         """
@@ -74,6 +76,8 @@ class ManageBase:
         Genera una lista con toda la información recibida por el ORM.
 
         :param data: Número de id seleccionado
+        :param data: string
+
         :returns: Todos la información de la tabla Empleados
         :rtype: list[str, int]
         """
@@ -103,6 +107,7 @@ class ManageBase:
         del registro desde la lista recibida.
 
         :param data: Lista con toda la informacion cargada
+        :type data: list
         """
         self.data = data
         empleado = Empleados()
@@ -123,6 +128,7 @@ class ManageBase:
         Se elimina todo un registro de la tabla de acuerdo al número de dni recibido.
 
         :param data: Número de dni seleccionado
+        :type data: string
         """
         self.data = data
         self.borrar = Empleados.get(Empleados.dni == self.data)
@@ -134,6 +140,7 @@ class ManageBase:
         el campo del DNI y del CUIL.
 
         :param data: Lista con los datos a modificar
+        :type data: list
         """
         self.data = data
         actualizar = Empleados.update(

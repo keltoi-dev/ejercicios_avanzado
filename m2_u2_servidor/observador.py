@@ -14,6 +14,7 @@ class Subject:
         Adiciona los observadores instanciados en el controlador en una lista.
 
         :param obj: de la clase que pide su incorporacion a la lista
+        :type obj: object
         """
         self.observers.append(obj)
 
@@ -22,6 +23,7 @@ class Subject:
         Elimina de la lista a un observadore instanciado.
 
         :param obj: de la clase que pide su eliminacion a la lista
+        :type obj: object
         """
         self.observers.remove(obj)
 
@@ -29,7 +31,8 @@ class Subject:
         """
         Envia a informar lo recolectado por cada observador en la lista.
 
-        :param args: Lista
+        :param args: Datos recibidos desde la funcion observada
+        :type args: list
         """
         for observer in self.observers:
             observer.update(args)
@@ -49,7 +52,8 @@ class ConcreteObserverA(Observer):
         """
         Toma los datos recolectado por el observador, los muestra por terminal y los guarda en un archivo txt
 
-        :param args: Lista
+        :param args: Datos recibidos desde la funcion observada
+        :type args: list
         """
         print("Estas en el observador A")
         print(f"Los parametros son: {args}")

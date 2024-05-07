@@ -22,6 +22,8 @@ class Auxiliares:
         Consulta la base de datos a través del método del ORM filtando por el id.
 
         :param tree: Objeto de la vista que contiene la información de la base de datos
+        :type tree: object
+
         :returns: Una lista con toda la información del registro
         :rtype: list[str, int]
         """
@@ -39,8 +41,12 @@ class Auxiliares:
         Se utilizan excepciones que retornan la información sobre el error.
 
         :param indice: Es el dato del número de DNI
+        :type indice: str
         :param l_status: Objeto de tkinter, etiqueta para la información en la barra de status
+        :type l_status: object
         :param aux_vista: Objeto instanciado auxiliar de la vista
+        :type aux_vista: object
+
         :returns: Un texto con la información sobre el posible error
         :rtype: str
         """
@@ -80,7 +86,10 @@ class Auxiliares:
         la base de datos. Ya sea con toda la información o aplicando un filtro de busqueda por obra.
 
         :param mitreeview: Objeto de la vista que contiene la información de la base de datos
+        :type mitreeview: object
         :param parameter: String con el dato del entry filtro para seleccionar los registros
+        :type parameter: str
+
         :returns: Texto vacio para la limpieza del campo de búsqueda
         :rtype: str
         """

@@ -211,7 +211,8 @@ class MasterWindow:
         """
         Función que lanza la consulta al servidor y recibe la informacion completa del empleado.
 
-        :param var_dni: String
+        :param var_dni: Valor ingresado en el campo dni
+        :type var_dni: string
         """
 
         if re.match("^\d{7,8}$", var_dni):
@@ -244,6 +245,7 @@ class MasterWindow:
         También se le puede enviar una lista vacia para poder limpiar todos los campos.
 
         :param data_list: La lista con toda la información a cargar o vacia para limpiar
+        :type data_list: list[str, int]
         """
 
         self.var_dni.set(data[1])
@@ -278,9 +280,13 @@ class WidgetsWindows(MasterWindow):
         Objeto para generar botones de tkinter.
 
         :param text_btn: Texto del botón
+        :type text_btn: string
         :param instruction: Función lambda para ejecutar desde el botón
+        :type instruction: string
         :param x: Valor de la fila del botón
+        :type x: integer
         :param y: Valor de la columna del botón
+        :type y: integer
         """
         self.text_btn = text_btn
         self.instruction = instruction
@@ -300,8 +306,11 @@ class WidgetsWindows(MasterWindow):
         Objeto para generar botones grises de tkinter.
 
         :param text_btn: Texto del botón
+        :type text_btn: string
         :param instruction: Función lambda para ejecutar desde el botón
+        :type instruction: string
         :param position: Valor de la fila del botón
+        :type position: integer
         """
         self.text_btn = text_btn
         self.instruction = instruction

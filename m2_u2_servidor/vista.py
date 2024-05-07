@@ -270,6 +270,9 @@ class MasterWindow:
         Control de la información, verifica la existencia de datos en el campo de dni,
         para la baja llamando al módulo modelo - delete_record.
         Advertencia de errores con ventanas emergentes showeror y confirmación con askokcancel.
+
+        :param e_dni: Entry donde se ingresa el valor del dni
+        :type e_dni: object
         """
         data_list = self.vista.create_list()
         if not data_list[0]:
@@ -298,6 +301,9 @@ class MasterWindow:
         Control de la información, verifica la existencia de datos en el campo de dni,
         para modificaciones llamando al módulo modelo - modify_record.
         Advertencia de errores con ventanas emergentes showeror y confirmación con askokcancel.
+
+        :param e_dni: Entry donde se ingresa el valor del dni
+        :type e_dni: object
         """
         data_list = self.vista.create_list()
         if not data_list[0]:
@@ -327,7 +333,8 @@ class MasterWindow:
         Función auxiliar para el llamando al módulo auxiliar de modelo - search_record.
         Advertencia de errores con ventanas emergentes showeror y confirmación con askokcancel.
 
-        :param var_dni: Objeto entry del frame datos
+        :param var_dni: Entry del frame datos que contiene el valor del dni
+        :type var_dni: object
         """
         info = aux.search_record(var_dni.get(), self.l_status, self.vista)
         if info:
@@ -343,9 +350,13 @@ class WidgetsWindows(MasterWindow):
         Objeto para generar botones de tkinter.
 
         :param text_btn: Texto del botón
+        :type text_btn: string
         :param instruction: Función lambda para ejecutar desde el botón
+        :type instruction: string
         :param x: Valor de la fila del botón
+        :type x: integer
         :param y: Valor de la columna del botón
+        :type y: integer
         """
         self.text_btn = text_btn
         self.instruction = instruction
@@ -365,8 +376,11 @@ class WidgetsWindows(MasterWindow):
         Objeto para generar botones grises de tkinter.
 
         :param text_btn: Texto del botón
+        :type text_btn: string
         :param instruction: Función lambda para ejecutar desde el botón
+        :type instruction: string
         :param position: Valor de la fila del botón
+        :type position: integer
         """
         self.text_btn = text_btn
         self.instruction = instruction
@@ -386,7 +400,9 @@ class WidgetsWindows(MasterWindow):
         Objeto para almanaque para carga de fechas de tkcalendar.
 
         :param data_var: Variable para tomar la fecha
+        :type data_var: object
         :param position: Valor de la columna del entry
+        :type position: integer
         """
         self.data_var = data_var
         self.position = position

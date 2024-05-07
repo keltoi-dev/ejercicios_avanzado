@@ -216,7 +216,7 @@ class MasterWindow:
 
         if re.match("^\d{7,8}$", var_dni):
             try:
-                HOST, PORT = "localhost", 456
+                HOST, PORT = "localhost", 9999
                 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                 message = str(var_dni)
                 sock.sendto(message.encode("UTF-8"), (HOST, PORT))

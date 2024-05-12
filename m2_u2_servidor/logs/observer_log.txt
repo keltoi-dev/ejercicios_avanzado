@@ -1,2 +1,2 @@
 Resultado del Observador A - Se cargaron los siguientes datos:
-((['33333333', '33333333333', 'Juan', 'Ramirez', 'Calle 33', '16-05-1994', '06-05-2024', '', '', ''],),)
+((['33333333', '33333333333', 'Ariel', 'Paez', 'Calle 88', '11-05-1994', '11-05-2024', '', '', '30000'],),)

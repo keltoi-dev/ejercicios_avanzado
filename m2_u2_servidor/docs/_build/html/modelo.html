@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo para verificacion de campos &mdash; UTN - Python Avanzado 0.3.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=4621528c"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Manejo de la base de datos" href="manejo_base.html" />
+    <link rel="prev" title="Módulo para la interfaz gráfica" href="vista.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            UTN - Python Avanzado
+          </a>
+              <div class="version">
+                0.3.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">Controlador de la aplicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">Módulo para la interfaz gráfica</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Módulo para verificacion de campos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.ManageData"><code class="docutils literal notranslate"><span class="pre">ManageData</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.ManageData.create_record"><code class="docutils literal notranslate"><span class="pre">ManageData.create_record()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.ManageData.delete_record"><code class="docutils literal notranslate"><span class="pre">ManageData.delete_record()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo.ManageData.modify_record"><code class="docutils literal notranslate"><span class="pre">ManageData.modify_record()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.decorador_alta"><code class="docutils literal notranslate"><span class="pre">decorador_alta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.decorador_baja"><code class="docutils literal notranslate"><span class="pre">decorador_baja()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.decorador_modificacion"><code class="docutils literal notranslate"><span class="pre">decorador_modificacion()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo.funcion_log"><code class="docutils literal notranslate"><span class="pre">funcion_log()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manejo_base.html">Manejo de la base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="verifica_campos.html">Módulo para verificacion de campos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aux_modelo.html">Auxiliares del módulo modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aux_vista.html">Auxiliares del módulo vista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observador.html">Modulo de observador de altas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="record_log.html">Modulo generador de archivos log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servidor.html">Modulo para iniciar el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cliente.html">Aplicacion para el cliente</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manual de la aplicación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">1. Descripcion general</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#pantalla-principal-sus-componentes">2. Pantalla principal - Sus componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#manual-de-uso-aplicacion-servidor">3. Manual de uso aplicacion servidor.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#manual-de-uso-aplicacion-cliente">4. Manual de uso aplicacion cliente.</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">UTN - Python Avanzado</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Módulo para verificacion de campos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modelo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-modelo">
+<span id="modulo-para-verificacion-de-campos"></span><h1>Módulo para verificacion de campos<a class="headerlink" href="#module-modelo" title="Link to this heading"></a></h1>
+<dl class="simple">
+<dt>modelo.py:</dt><dd><p>Modelo de la aplicación - Altas, bajas y modificaciones</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.ManageData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">ManageData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aux_vista</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ManageData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.ManageData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="observador.html#observador.Subject" title="observador.Subject"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subject</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ManageData.create_record">
+<span class="sig-name descname"><span class="pre">create_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ManageData.create_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.ManageData.create_record" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ManageData.delete_record">
+<span class="sig-name descname"><span class="pre">delete_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ManageData.delete_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.ManageData.delete_record" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ManageData.modify_record">
+<span class="sig-name descname"><span class="pre">modify_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ManageData.modify_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.ManageData.modify_record" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelo.decorador_alta">
+<span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">decorador_alta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/modelo.html#decorador_alta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.decorador_alta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelo.decorador_baja">
+<span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">decorador_baja</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/modelo.html#decorador_baja"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.decorador_baja" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelo.decorador_modificacion">
+<span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">decorador_modificacion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/modelo.html#decorador_modificacion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.decorador_modificacion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelo.funcion_log">
+<span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">funcion_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/modelo.html#funcion_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelo.funcion_log" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vista.html" class="btn btn-neutral float-left" title="Módulo para la interfaz gráfica" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manejo_base.html" class="btn btn-neutral float-right" title="Manejo de la base de datos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, German Fraga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

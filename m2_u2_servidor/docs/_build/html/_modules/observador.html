@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>observador &mdash; UTN - Python Avanzado 0.3.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=4621528c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            UTN - Python Avanzado
+          </a>
+              <div class="version">
+                0.3.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">Controlador de la aplicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">Módulo para la interfaz gráfica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">Módulo para verificacion de campos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manejo_base.html">Manejo de la base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../verifica_campos.html">Módulo para verificacion de campos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aux_modelo.html">Auxiliares del módulo modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aux_vista.html">Auxiliares del módulo vista</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../observador.html">Modulo de observador de altas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../record_log.html">Modulo generador de archivos log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../servidor.html">Modulo para iniciar el servidor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cliente.html">Aplicacion para el cliente</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manual de la aplicación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">1. Descripcion general</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html#pantalla-principal-sus-componentes">2. Pantalla principal - Sus componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html#manual-de-uso-aplicacion-servidor">3. Manual de uso aplicacion servidor.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html#manual-de-uso-aplicacion-cliente">4. Manual de uso aplicacion cliente.</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">UTN - Python Avanzado</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">observador</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for observador</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">observador.py:</span>
+<span class="sd">    Observador constante de la funcion de alta de la aplicación.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">record_log</span> <span class="kn">import</span> <span class="n">RecordLog</span>
+
+
+<div class="viewcode-block" id="Subject">
+<a class="viewcode-back" href="../observador.html#observador.Subject">[docs]</a>
+<span class="k">class</span> <span class="nc">Subject</span><span class="p">:</span>
+    <span class="n">observers</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Subject.add_observer">
+<a class="viewcode-back" href="../observador.html#observador.Subject.add_observer">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_observer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adiciona los observadores instanciados en el controlador en una lista.</span>
+
+<span class="sd">        :param obj: de la clase que pide su incorporacion a la lista</span>
+<span class="sd">        :type obj: object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Subject.substract_observer">
+<a class="viewcode-back" href="../observador.html#observador.Subject.substract_observer">[docs]</a>
+    <span class="k">def</span> <span class="nf">substract_observer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Elimina de la lista a un observadore instanciado.</span>
+
+<span class="sd">        :param obj: de la clase que pide su eliminacion a la lista</span>
+<span class="sd">        :type obj: object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Subject.notify_observer">
+<a class="viewcode-back" href="../observador.html#observador.Subject.notify_observer">[docs]</a>
+    <span class="k">def</span> <span class="nf">notify_observer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Envia a informar lo recolectado por cada observador en la lista.</span>
+
+<span class="sd">        :param args: Datos recibidos desde la funcion observada</span>
+<span class="sd">        :type args: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">observer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observers</span><span class="p">:</span>
+            <span class="n">observer</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Observer">
+<a class="viewcode-back" href="../observador.html#observador.Observer">[docs]</a>
+<span class="k">class</span> <span class="nc">Observer</span><span class="p">:</span>
+<div class="viewcode-block" id="Observer.update">
+<a class="viewcode-back" href="../observador.html#observador.Observer.update">[docs]</a>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Delegacion de actualizacion&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ConcreteObserverA">
+<a class="viewcode-back" href="../observador.html#observador.ConcreteObserverA">[docs]</a>
+<span class="k">class</span> <span class="nc">ConcreteObserverA</span><span class="p">(</span><span class="n">Observer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs_a</span> <span class="o">=</span> <span class="n">obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs_a</span><span class="o">.</span><span class="n">add_observer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ConcreteObserverA.update">
+<a class="viewcode-back" href="../observador.html#observador.ConcreteObserverA.update">[docs]</a>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Toma los datos recolectado por el observador, los muestra por terminal y los guarda en un archivo txt</span>
+
+<span class="sd">        :param args: Datos recibidos desde la funcion observada</span>
+<span class="sd">        :type args: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estas en el observador A&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Los parametros son: </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;observer_log.txt&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Resultado del Observador A - Se cargaron los siguientes datos:</span><span class="se">\n</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">RecordLog</span><span class="p">()</span><span class="o">.</span><span class="n">save_log</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, German Fraga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -230,7 +230,7 @@ class MasterWindow:
                         text="El dni seleccionado no existe en la base de datos.",
                         background="#FF5656",
                     )
-            except:
+            except OSError:
                 self.l_status.config(
                     text="El servidor no esta conectado.", background="#FF5656"
                 )

@@ -14,3 +14,5 @@ Se recibe para consultar el siguiente dni: 33444555
 Direccion IP: ('127.0.0.1', 52622)
 Se recibe para consultar el siguiente dni: 33444555
 Direccion IP: ('127.0.0.1', 56613)
+Se recibe para consultar el siguiente dni: 33444555
+Direccion IP: ('127.0.0.1', 55532)

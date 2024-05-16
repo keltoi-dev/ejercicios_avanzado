@@ -217,8 +217,9 @@ class MasterWindow:
 
         if re.match("^\d{7,8}$", var_dni):
             try:
-                HOST, PORT = "localhost", 9999
+                HOST, PORT = "127.0.0.1", 9999
                 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                sock.settimeout(2)
                 message = str(var_dni)
                 sock.sendto(message.encode("UTF-8"), (HOST, PORT))
                 received = sock.recvfrom(1024)
@@ -230,7 +231,7 @@ class MasterWindow:
                         text="El dni seleccionado no existe en la base de datos.",
                         background="#FF5656",
                     )
-            except OSError:
+            except socket.timeout:
                 self.l_status.config(
                     text="El servidor no esta conectado.", background="#FF5656"
                 )

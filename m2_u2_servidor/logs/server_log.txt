@@ -20,3 +20,17 @@ Direccion IP: ('127.0.0.1', 63963)
 >>>>>>> Stashed changes
 Se recibe para consultar el siguiente dni: 33444555
 Direccion IP: ('127.0.0.1', 55288)
+Se recibe para consultar el siguiente dni: 28001133
+Direccion IP: ('127.0.0.1', 50057)
+Se recibe para consultar el siguiente dni: 33444555
+Direccion IP: ('127.0.0.1', 64151)
+Se recibe para consultar el siguiente dni: 33333333
+Direccion IP: ('127.0.0.1', 54086)
+Se recibe para consultar el siguiente dni: 33333333
+Direccion IP: ('127.0.0.1', 53913)
+Se recibe para consultar el siguiente dni: 33444555
+Direccion IP: ('127.0.0.1', 51452)
+Se recibe para consultar el siguiente dni: 33444555
+Direccion IP: ('127.0.0.1', 55209)
+Se recibe para consultar el siguiente dni: 28001133
+Direccion IP: ('127.0.0.1', 52257)

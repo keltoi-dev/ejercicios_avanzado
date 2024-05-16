@@ -1,23 +1,5 @@
 Se recibe para consultar el siguiente dni: 33444555
 Direccion IP: ('127.0.0.1', 58556)
-Se recibe para consultar el siguiente dni: 33333333
-<<<<<<< Updated upstream
-Direccion IP: ('127.0.0.1', 58400)
-Se recibe para consultar el siguiente dni: 33444555
-Direccion IP: ('127.0.0.1', 56058)
-Se recibe para consultar el siguiente dni: 33444555
-Direccion IP: ('127.0.0.1', 57278)
-Se recibe para consultar el siguiente dni: 33444555
-Direccion IP: ('127.0.0.1', 52622)
-Se recibe para consultar el siguiente dni: 33444555
-Direccion IP: ('127.0.0.1', 56613)
-Se recibe para consultar el siguiente dni: 33444555
-Direccion IP: ('127.0.0.1', 55532)
-=======
-Direccion IP: ('127.0.0.1', 58573)
-Se recibe para consultar el siguiente dni: 40700900
-Direccion IP: ('127.0.0.1', 63963)
->>>>>>> Stashed changes
 Se recibe para consultar el siguiente dni: 33444555
 Direccion IP: ('127.0.0.1', 55288)
 Se recibe para consultar el siguiente dni: 28001133
